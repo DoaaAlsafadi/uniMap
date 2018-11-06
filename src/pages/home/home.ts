@@ -300,12 +300,14 @@ export class HomePage {
   }
 
   showMap() {
-    const location = new google.maps.LatLng(31.947389, 35.926646)
+    const location = new google.maps.LatLng(31.947389, 35.926646);
     const options = {
       center: location,
       zoom: 10
     }
     this.map = new google.maps.Map(this.mapRef.nativeElement, options);
+
+    console.log(this.origin, "  mappppp")
     const infoWindow = new google.maps.InfoWindow;
     this.directionsService = new google.maps.DirectionsService();
     this.directionsDisplay = new google.maps.DirectionsRenderer();
@@ -341,6 +343,17 @@ export class HomePage {
       'Error: Your browser doesn\'t support geolocation.');
     infoWindow.open(this.map);
   }
+  // addPanorama() {
+  //   var panorama = new google.maps.StreetViewPanorama(
+  //     document.getElementById('pano'), {
+  //       position: this.origin,
+  //       pov: {
+  //         heading: 34,
+  //         pitch: 10
+  //       }
+  //     });
+  //   this.map.setStreetView(panorama);
+  // }
 
   addMarkers(position, map) {
     return new google.maps.Marker({
@@ -358,6 +371,7 @@ export class HomePage {
     }, function (response, status) {
       if (status === 'OK') {
         directionsDisplay.setDirections(response);
+        // this.addPanorama();
       } else {
         window.alert('Directions request failed due to ' + status);
       }
@@ -410,11 +424,20 @@ export class HomePage {
     }
     console.log(this.destination, " /n/n/n/n//n/n destination");
 
-    console.log(this.uniName , this.origin.lat, this.destination, this.travelMode);
+    console.log(this.uniName, this.origin.lat, this.destination, this.travelMode);
 
     if (this.uniName && this.origin.lat && this.destination.lat && this.travelMode) {
       this.calculateAndDisplayRoute(this.directionsService, this.directionsDisplay)
     }
+  }
+
+  openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+
+  /* Set the width of the side navigation to 0 */
+  closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
   }
 
 }

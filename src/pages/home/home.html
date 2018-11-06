@@ -1,35 +1,52 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>uniMap</ion-title>
+    <ion-title (click)="openNav()" >
+      <img class="animated infinite swing delay-2s" src="../../assets/imgs/uniMap.png" alt="logo" width="120" >
+      <!-- uniMap -->
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-<!-- ****************************************  select boxes   ***************************************** -->
-  <div id='select-box' >
+  <!-- ****************************************  select boxes   ***************************************** -->
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+    <form>
+      <div class="form-group">
+        <select class="form-control" placeholder='travel mode' [ngModelOptions]="{standalone: true}" id='travelMode' [(ngModel)]="travelMode">
+          <option *ngFor="let mode of travelModes" [value]="mode.name">{{mode.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select id='university' class="form-control" placeholder='university'  [ngModelOptions]="{standalone: true}" [(ngModel)]="uniName" (change)='changeUniversity()'>
+          <option *ngFor="let uni of universities" [value]="uni.name">{{uni.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select id='origin' placeholder='from' [ngModelOptions]="{standalone: true}" [(ngModel)]="origin.name" (change)='changeOrigin()'>
+          <option *ngFor="let college of colleges" [value]="college.name">{{college.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select id='destination' placeholder='to'  [ngModelOptions]="{standalone: true}" [(ngModel)]="destination.name" (change)='changeDestination()'>
+          <option *ngFor="let college of colleges" [value]="college.name">{{college.name}}</option>
+        </select>
+      </div>
 
-    <select placeholder='travel mode' [(ngModel)]="travelMode" placeholder="travel mode">
-      <option *ngFor="let mode of travelModes" [value]="mode.name">{{mode.name}}</option>
-    </select>
-
-    <select placeholder='university' *ngIf='travelMode' [(ngModel)]="uniName" placeholder="select university" (change)='changeUniversity()'>
-      <option *ngFor="let uni of universities" [value]="uni.name">{{uni.name}}</option>
-    </select>
-
-    <select placeholder='from' *ngIf='uniName' [(ngModel)]="origin.name" placeholder="from" (change)='changeOrigin()'>
-      <option *ngFor="let college of colleges" [value]="college.name">{{college.name}}</option>
-    </select>
-
-    <select placeholder='to' *ngIf='origin.name' [(ngModel)]="destination.name" placeholder="to" (change)='changeDestination()'>
-      <option *ngFor="let college of colleges" [value]="college.name">{{college.name}}</option>
-    </select>
-
+      <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+    </form>
   </div>
 
 
-<!-- ****************************************  Map   **********************************************   -->
+
+
+  <!-- ****************************************  Map   **********************************************   -->
   <div #map id='map'>
+    <!-- <div id="pano"></div> -->
   </div>
+
+  <!-- <span onclick="openNav()">open</span> -->
+
 
 
 </ion-content>
