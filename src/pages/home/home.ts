@@ -42,6 +42,7 @@ export class HomePage {
     this.universities = [
       {
         name: 'الجامعة الاردنية',
+        icon:'../../assets/icon/universityOfJordan.jpg',
         colleges: [
           {
             name: "Current Location",
@@ -218,6 +219,7 @@ export class HomePage {
       },
       {
         name: 'الجامعة الهاشمية',
+        icon:'../../assets/icon/hashimateUniversity.jpeg',
         colleges: [
           {
             name: "Current Location",
@@ -297,13 +299,29 @@ export class HomePage {
         ]
       },
     ]
+
+  //   $('#myDropdown').ddslick({
+  //     data:this.universities,
+  //     width:300,
+  //     selectText: "Select your preferred social network",
+  //     imagePosition:"right",
+  //     onSelected: function(selectedData){
+  //         //callback function: do something with selectedData;
+  //         console.log(selectedData,"iiiiiiiiiiii");
+
+  //     }
+  // });
   }
 
   showMap() {
     const location = new google.maps.LatLng(31.947389, 35.926646);
     const options = {
       center: location,
-      zoom: 10
+      zoom: 10,
+      disableDefaultUI: true, // a way to quickly hide all controls
+      // mapTypeControlOptions: {
+      //   mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.HYBRID]
+      // }, // here´s the array of controls
     }
     this.map = new google.maps.Map(this.mapRef.nativeElement, options);
 
@@ -378,8 +396,6 @@ export class HomePage {
     });
   }
 
-
-
   changeUniversity() {
     console.log(this.uniName, " /n/n/n/n//n/n university");
     this.universities.forEach(element => {
@@ -432,12 +448,32 @@ export class HomePage {
   }
 
   openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
+    if(document.getElementById("mySidenav").style.width == "250px"){
+      document.getElementById("mySidenav").style.width = "0";
+    }else{
+      document.getElementById("mySidenav").style.width = "250px";
+    }
   }
 
   /* Set the width of the side navigation to 0 */
-  closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
+  // closeNav() {
+  //   document.getElementById("mySidenav").style.width = "0";
+  // }
+
+  walk() {
+   var walk =  document.getElementById('walk');
+   walk.className += ' animated pulse infinite'
+   var car =  document.getElementById('car');
+    car.className = ' img-fluid'
+    this.travelMode = 'WALKING'
   }
 
+  car() {
+    var car =  document.getElementById('car');
+    car.className += ' animated pulse infinite'
+    var walk =  document.getElementById('walk');
+   walk.className = 'img-fluid'
+   this.travelMode = 'DRIVING'
+
+   }
 }

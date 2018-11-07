@@ -1,38 +1,52 @@
 <ion-header>
   <ion-navbar>
-    <ion-title (click)="openNav()" >
-      <img class="animated infinite swing delay-2s" src="../../assets/imgs/uniMap.png" alt="logo" width="120" >
-      <!-- uniMap -->
+    <ion-title (click)="openNav()">
+      <img class="animated infinite swing delay-2s" src="../../assets/imgs/uniMap.png" alt="logo" width="120">
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <!-- ****************************************  select boxes   ***************************************** -->
+  <!-- ****************************************  side Nav   ***************************************** -->
   <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+
+    <!-- <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a> -->
     <form>
       <div class="form-group">
-        <select class="form-control" placeholder='travel mode' [ngModelOptions]="{standalone: true}" id='travelMode' [(ngModel)]="travelMode">
-          <option *ngFor="let mode of travelModes" [value]="mode.name">{{mode.name}}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <select id='university' class="form-control" placeholder='university'  [ngModelOptions]="{standalone: true}" [(ngModel)]="uniName" (change)='changeUniversity()'>
-          <option *ngFor="let uni of universities" [value]="uni.name">{{uni.name}}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <select id='origin' placeholder='from' [ngModelOptions]="{standalone: true}" [(ngModel)]="origin.name" (change)='changeOrigin()'>
-          <option *ngFor="let college of colleges" [value]="college.name">{{college.name}}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <select id='destination' placeholder='to'  [ngModelOptions]="{standalone: true}" [(ngModel)]="destination.name" (change)='changeDestination()'>
-          <option *ngFor="let college of colleges" [value]="college.name">{{college.name}}</option>
-        </select>
+        <img src="../../assets/icon/walkBlue.png" width="30" id='walk' class="img-fluid animated pulse infinite" alt="Responsive image"
+          (click)='walk()'>
+        <img src="../../assets/icon/carBlue.png" width="40" id='car' class="img-fluid" alt="Responsive image" (click)='car()'>
       </div>
 
+      <!-- <div class="form-group">
+        <select class="form-control" placeholder='travel mode' [ngModelOptions]="{standalone: true}" id='travelMode'
+          [(ngModel)]="travelMode">
+          <option *ngFor="let mode of travelModes" [value]="mode.name">{{mode.name}}</option>
+        </select>
+      </div> -->
+      <div class="form-group">
+        <span class='label'>university</span>
+        <select id='university' class="form-control selectpicker" placeholder='university' [ngModelOptions]="{standalone: true}"
+          [(ngModel)]="uniName" (change)='changeUniversity()'>
+          <option *ngFor="let uni of universities" [value]="uni.name">
+            {{uni.name}}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <span class='label'>origin</span>
+        <select id='origin' class="form-control selectpicker" placeholder='from' [ngModelOptions]="{standalone: true}"
+          [(ngModel)]="origin.name" (change)='changeOrigin()'>
+          <option *ngFor="let college of colleges" [value]="college.name">{{college.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <span class='label'>destination</span>
+        <select id='destination' class="form-control selectpicker" placeholder='to' [ngModelOptions]="{standalone: true}"
+          [(ngModel)]="destination.name" (change)='changeDestination()'>
+          <option *ngFor="let college of colleges" [value]="college.name">{{college.name}}</option>
+        </select>
+      </div>
       <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
     </form>
   </div>
@@ -40,10 +54,13 @@
 
 
 
+
+
+
   <!-- ****************************************  Map   **********************************************   -->
   <div #map id='map'>
-    <!-- <div id="pano"></div> -->
   </div>
+  <!-- <div id="pano"></div> -->
 
   <!-- <span onclick="openNav()">open</span> -->
 
