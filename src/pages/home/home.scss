@@ -6,6 +6,19 @@ page-home {
     position: relative;
   }
 
+  #header{
+    background-color: #2A6BAC;
+    padding: 1% 1%;
+    height: 20%;
+    width: 100%;
+  }
+
+#walk{
+  margin-right: 20%;
+}
+  #travel-mode{
+    margin-left: 30%;
+  }
 #select-box {
   display: inline-block;
   width: 100%;
@@ -59,9 +72,6 @@ page-home {
     padding: 20px;
 }
 
-ion-title {
-  cursor: pointer;
-}
 
 .label {
   color: white;

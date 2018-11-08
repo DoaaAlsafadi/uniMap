@@ -25,7 +25,7 @@ export class HomePage {
   directionsDisplay: any;
   directionsService: any;
   map: any;
-  travelMode: any
+  travelMode: any ='WALKING';
   travelModes = [{ name: 'DRIVING' }, { name: 'WALKING' }]
   pos: any = {
     lat: null,
@@ -331,6 +331,10 @@ export class HomePage {
     this.directionsDisplay = new google.maps.DirectionsRenderer();
     this.directionsDisplay.setMap(this.map);
     this.addMarkers(location, this.map)
+    console.log();
+
+    // (document.getElementsByClassName('header header-md')[1] as HTMLElement).style.backgroundColor = '#000010';
+    // (document.getElementsByClassName('header header-md')[1] as HTMLElement).style.color = '#000010'
 
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -448,6 +452,8 @@ export class HomePage {
   }
 
   openNav() {
+   console.log(document.getElementsByClassName('header header-md')[1]);
+
     if(document.getElementById("mySidenav").style.width == "250px"){
       document.getElementById("mySidenav").style.width = "0";
     }else{
@@ -462,6 +468,8 @@ export class HomePage {
 
   walk() {
    var walk =  document.getElementById('walk');
+   walk.style.webkitFilter = 'sepia(100%)'
+   walk.style.filter = 'sepia(100%)'
    walk.className += ' animated pulse infinite'
    var car =  document.getElementById('car');
     car.className = ' img-fluid'
